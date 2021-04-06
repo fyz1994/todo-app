@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>待办事项</title>
+    <link rel="stylesheet" href="./index.css" />
+    <script src="./index.js"></script>
+  </head>
+
+  <body>
+    <header>
+      <div class="title-and-search">
+        <h1>我的待办事项</h1>
+        <input
+          placeholder="搜索您的待办事项"
+          id="input-search-todo-item"
+          onkeypress="searchTodos(event);"
+        />
+      </div>
+
+      <div class="add-todo-item">
+        <input
+          placeholder="添加待办事项"
+          onkeypress="handleAddTodoItem(event);"
+          id="input-add-todo-item"
+        />
+      </div>
+    </header>
+
+    <div class="show-todo-list">
+      <table>
+        <caption>
+          当前的待办事项
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">待办事项</th>
+            <th scope="col">操作</th>
+          </tr>
+        </thead>
+        <tbody id="todo-list-body"></tbody>
+      </table>
+    </div>
+  </body>
+</html>
