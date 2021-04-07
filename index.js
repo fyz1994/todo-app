@@ -5,36 +5,24 @@ const todos = []; // 待办事项数组
  * @param {*} e 点击 Enter 时传入的参数
  */
 function searchTodos(e) {
-  if (e.code === "Enter") {
-    const searchInput = document.querySelector("#input-search-todo-item");
-    if (!searchInput) {
-      console.error("没有定位到搜索输入框，搜索失败！");
-      return;
-    }
-    const keywordForSearch = searchInput.value;
+  console.log(e.code, e.target.value);
+  // 根据获取的搜索关键词来过滤待办事项数组
 
-    if (!keywordForSearch) {
-      // 若当前动作是清空输入框，则恢复显示所有待办事项
-      todos.forEach((todo) => append1TodoItem(todo));
-    } else {
-      // 根据获取的搜索关键词来过滤待办事项数组
-
-      // 先清空原来的搜索结果
-      const todoListBody = document.querySelector("#todo-list-body");
-      if (!todoListBody) {
-        console.error("没有定位到待办事项的列表body，搜索失败！");
-        return;
-      }
-      todoListBody.innerHTML = "";
-
-      // 再将匹配到的待办事项渲染出来
-      todos.forEach((todo) => {
-        if (todo.indexOf(keywordForSearch) > -1) {
-          append1TodoItem(todo);
-        }
-      });
-    }
+  // 先清空原来的搜索结果
+  const todoListBody = document.querySelector("#todo-list-body");
+  if (!todoListBody) {
+    console.error("没有定位到待办事项的列表body，搜索失败！");
+    return;
   }
+  todoListBody.innerHTML = "";
+
+  // 再将匹配到的待办事项渲染出来
+  const keywordForSearch = e.target.value;
+  todos.forEach((todo) => {
+    if (todo.indexOf(keywordForSearch) > -1) {
+      append1TodoItem(todo);
+    }
+  });
 }
 
 /**
@@ -43,8 +31,7 @@ function searchTodos(e) {
  */
 function handleAddTodoItem(e) {
   if (e.code === "Enter") {
-    const input = document.querySelector("#input-add-todo-item");
-    const todoItem = input && input.value;
+    const todoItem = e.target.value;
 
     todos.push(todoItem);
     append1TodoItem(todoItem);
